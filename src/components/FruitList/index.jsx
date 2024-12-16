@@ -1,16 +1,14 @@
+import { useContext } from "react";
 import { FruitCard } from "./FruitCard";
+import { TodoContext } from "../../providers/TodoContext";
 
-export const FruitList = ({fruitList, setFruitList}) => {
-    const removeFruit = (fruitId) => {
-        const newFruitList = fruitList.filter(fruit => fruit.id !== fruitId);
-        setFruitList(newFruitList);
-    }
-
-    return(
-        <ul>
-            {fruitList.map(fruit => (
-                <FruitCard key={fruit.id} fruit={fruit} removeFruit={removeFruit} />
-            ))}
-        </ul>
-    )
-}
+export const FruitList = () => {
+    const {fruitList} = useContext(TodoContext)
+  return (
+    <ul>
+      {fruitList.map((fruit) => (
+        <FruitCard key={fruit.id} fruit={fruit} />
+      ))}
+    </ul>
+  );
+};
